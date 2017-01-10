@@ -1,7 +1,7 @@
 import React from 'react';
 import Task from './Task';
 
-const TaskList = ({ tasks, onTaskClick, onTaskEdit }) => (
+const TaskList = ({ tasks, onTaskClick, onTaskEdit, onTaskRemove }) => (
 	<div>
 		<p>Tasks:</p>
 		<ul>
@@ -10,6 +10,7 @@ const TaskList = ({ tasks, onTaskClick, onTaskEdit }) => (
 						key={t.id}
 						{...t}
 						onClick={() => onTaskClick(t.id)}
+						onRemove={() => onTaskRemove(t.id)}
 						onSave={(title, time) => onTaskEdit(t.id, title, time)}
 					/>
 			))}

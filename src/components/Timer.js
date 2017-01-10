@@ -63,6 +63,14 @@ class Timer extends React.Component {
 		});
 	}
 
+	secsToString(secs) {
+		let str = [];
+		str.unshift(parseInt(secs % 60));
+		str.unshift(parseInt(secs / 60));
+		str.unshift(parseInt(secs / 3600));
+		return str.join(':');
+	}
+
 	componentDidMount() {
 		this.timerID = setInterval(
 			() => this.tick(),
@@ -82,7 +90,7 @@ class Timer extends React.Component {
 		return (
 			<div>
 				<p>Current Task: {this.props.title}</p>
-				<p onClick={this.toggleTimer.bind(this)}>{this.state.time}</p>
+				<p onClick={this.toggleTimer.bind(this)}>{this.secsToString(this.state.time)}</p>
 			</div>
 		)
 	}

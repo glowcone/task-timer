@@ -46,8 +46,15 @@ class Task extends React.Component {
 					onChange={this.updateTime.bind(this)}
 					onBlur={this.saveTask.bind(this)}
 				/>
-			</li>
-			
+				<button onClick={(e) => {
+					e.preventDefault();
+					this.props.onRemove();
+				}}
+			>
+				X
+			</button>
+		</li>
+
 		)
 	}
 }

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setCurrentTask, editTask } from '../actions/actions'
+import { setCurrentTask, editTask, removeTask } from '../actions/actions'
 import TaskList from '../components/TaskList'
 
 const mapStateToProps = (state) => {
@@ -13,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onTaskClick: (id) => {
 			dispatch(setCurrentTask(id));
+		},
+		onTaskRemove: (id) => {
+			dispatch(removeTask(id));
 		},
 		onTaskEdit: (id, title, time) => {
 			dispatch(editTask(id, title, time));
