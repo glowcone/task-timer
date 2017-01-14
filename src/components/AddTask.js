@@ -9,7 +9,7 @@ const AddTask = ({ dispatch }) => {
 				e.preventDefault();
 				dispatch(addTask('', 0));
 			}}>
-				Add
+				+
 			</button>
 		</div>
 	)

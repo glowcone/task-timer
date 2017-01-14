@@ -1,11 +1,23 @@
 import React from 'react';
 import Task from './Task';
 
-const TaskList = ({ tasks, onTaskClick, onTaskEdit, onTaskRemove }) => (
+const TaskList = ({ activeTasks, completedTasks, onTaskClick, onTaskEdit, onTaskRemove }) => (
 	<div>
-		<p>Tasks:</p>
+		<p>Completed Tasks:</p>
 		<ul>
-			{tasks.map(t => (
+			{completedTasks.map(t => (
+					<Task
+						key={t.id}
+						{...t}
+						onClick={() => onTaskClick(t.id)}
+						onRemove={() => onTaskRemove(t.id)}
+					/>
+			))}
+		</ul>
+
+		<p>Active Tasks:</p>
+		<ul>
+			{activeTasks.map(t => (
 					<Task
 						key={t.id}
 						{...t}

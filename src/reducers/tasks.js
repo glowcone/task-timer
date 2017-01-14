@@ -20,7 +20,9 @@ const task = (state = {}, action) => {
 	}
 }
 
-const tasks = (state = [], action) => {
+const initialState = [];
+
+const tasks = (state = initialState, action) => {
 	switch(action.type) {
 		case 'ADD_TASK':
 			return [

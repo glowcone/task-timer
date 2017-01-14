@@ -1,24 +1,14 @@
 import React from 'react';
+import { stringToSecs, secsToString } from '../utils/parseTime'
 
 class Task extends React.Component {
+
 	constructor(props) {
 		super(props);
-		this.state = {
-			title: '',
-			time: '00:00:00'
+		this.state={
+			title: ''
 		}
 	}
-
-	stringToSecs(string) {
-		let tarr = string.split(':');
-		let secs = 0, mul = 1;
-		for(let i=tarr.length-1; i>=0; i--) {
-			secs += tarr[i] * mul;
-			mul *= 60;
-		}
-		return secs;
-	}
-	
 	updateTime(event) {
 		this.setState({time: event.target.value});
 	}
@@ -28,20 +18,31 @@ class Task extends React.Component {
 	}
 
 	saveTask() {
-		this.props.onSave(this.state.title.trim(), this.stringToSecs(this.state.time));
+		let title = this.state.title.trim();
+		let secs = stringToSecs(this.state.time);
+		this.props.onSave(title, secs);
+		this.setState({
+			title,
+			time: secsToString(secs)
+		})
 	}
 
+	randomInitTime() {
+		return secsToString(parseInt(Math.random()*6000));
+	}
 	render() {
 		return (
 			<li onDoubleClick={this.props.onClick}>
 				<input
 					type="text"
+					placeholder="Title"
 					value={this.state.title}
 					onChange={this.updateTitle.bind(this)}
 					onBlur={this.saveTask.bind(this)}
 				/>
 				<input
 					type="text"
+					placeholder={this.randomInitTime()}
 					value={this.state.time}
 					onChange={this.updateTime.bind(this)}
 					onBlur={this.saveTask.bind(this)}

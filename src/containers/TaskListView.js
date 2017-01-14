@@ -3,9 +3,11 @@ import { setCurrentTask, editTask, removeTask } from '../actions/actions'
 import TaskList from '../components/TaskList'
 
 const mapStateToProps = (state) => {
-	let activeTasks = state.tasks.slice(state.currentTaskIndex + 1);
+	let activeTasks = state.tasks.slice(state.currentTaskIndex);
+	let completedTasks = state.tasks.slice(0, state.currentTaskIndex-1);
 	return {
-		tasks: activeTasks
+		activeTasks,
+		completedTasks
 	}
 }
 

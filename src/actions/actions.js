@@ -1,4 +1,4 @@
-let tid = 0;
+let tid = 1;
 export const addTask = (title, time) => {
 	return {
 		type: 'ADD_TASK',
