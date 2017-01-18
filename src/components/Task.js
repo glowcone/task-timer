@@ -3,12 +3,19 @@ import { stringToSecs, secsToString } from '../utils/parseTime'
 
 class Task extends React.Component {
 
+	titleInput;
+
 	constructor(props) {
 		super(props);
 		this.state={
 			title: ''
 		}
 	}
+
+	componentDidMount() {
+		this.titleInput.focus();
+	}
+
 	updateTime(event) {
 		this.setState({time: event.target.value});
 	}
@@ -39,6 +46,7 @@ class Task extends React.Component {
 					value={this.state.title}
 					onChange={this.updateTitle.bind(this)}
 					onBlur={this.saveTask.bind(this)}
+					ref={(input) => {this.titleInput = input;}}
 				/>
 				<input
 					type="text"
